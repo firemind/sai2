@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dl_finished: false
+  firstaired: 2014-10-21
+  name: MyString
+  watched: false
+  length: 1
+
+two:
+  dl_finished: false
+  firstaired: 2014-10-21
+  name: MyString
+  watched: false
+  length: 1

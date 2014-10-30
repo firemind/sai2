@@ -1,0 +1,8 @@
+= @serie.name
+
+%ul
+  - @serie.episodes.each do |ep|
+    %li
+      = ep.season_nr
+      = ep.watchable.name
+      = ep.watchable.firstaired

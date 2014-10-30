@@ -1,0 +1,10 @@
+%table
+  - @series.each do |serie|
+    %tr
+      %td= serie.name
+      %td= serie.language
+%form{action: "/series/fetch", method: "post"}
+  %label name
+  %input{name: "name"}
+  %input{type: "submit", value: "submit"}
+

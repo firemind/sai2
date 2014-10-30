@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enclosure_url: MyString
+  files: 1
+  job_id: 1
+  name: MyString
+  pub_date: 2014-10-21 07:30:53
+  rating: 1
+  size: MyString
+  media_id: 1
+
+two:
+  enclosure_url: MyString
+  files: 1
+  job_id: 1
+  name: MyString
+  pub_date: 2014-10-21 07:30:53
+  rating: 1
+  size: MyString
+  media_id: 1
