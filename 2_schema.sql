@@ -1,18 +1,11 @@
 CREATE TABLE actors (
-    id integer NOT NULL,
+    id serial,
     name character varying(255) NOT NULL,
     gender smallint DEFAULT 0 NOT NULL,
     popularity integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
-
-CREATE SEQUENCE actors_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 CREATE TABLE actors_watchables (
     watchable_id integer NOT NULL,
@@ -22,7 +15,7 @@ CREATE TABLE actors_watchables (
 );
 
 CREATE TABLE episodes (
-    id integer NOT NULL,
+    id serial,
     season_nr integer,
     watchable_id integer NOT NULL,
     serie_id integer NOT NULL,
@@ -30,46 +23,24 @@ CREATE TABLE episodes (
     updated_at timestamp without time zone
 );
 
-CREATE SEQUENCE episodes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
 CREATE TABLE movies (
-    id integer NOT NULL,
+    id serial,
     rottentomatoesrating integer,
     watchable_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
 
-CREATE SEQUENCE movies_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
 CREATE TABLE series (
-    id integer NOT NULL,
+    id serial,
     name character varying(255) NOT NULL,
     language character varying(255) DEFAULT 'english'::character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
 
-CREATE SEQUENCE series_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
 CREATE TABLE torrents (
-    id integer NOT NULL,
+    id serial,
     enclosure_url character varying(255) NOT NULL,
     files integer DEFAULT 1 NOT NULL,
     job_id integer,
@@ -82,15 +53,8 @@ CREATE TABLE torrents (
     updated_at timestamp without time zone
 );
 
-CREATE SEQUENCE torrents_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
 CREATE TABLE watchables (
-    id integer NOT NULL,
+    id serial,
     dl_finished boolean DEFAULT false NOT NULL,
     firstaired date,
     name character varying(255) NOT NULL,
@@ -99,13 +63,6 @@ CREATE TABLE watchables (
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
-
-CREATE SEQUENCE watchables_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
 SELECT pg_catalog.setval('actors_id_seq', 40, true);

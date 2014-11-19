@@ -1,3 +1,6 @@
+drop database if exists sai_dev;
+drop role if exists sai_dev;
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
