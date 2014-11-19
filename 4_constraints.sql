@@ -1,3 +1,6 @@
+/*
+	Names: Michael Gerber, Ariana Arcos Blanco
+*/
 ALTER TABLE ONLY actors
     ADD CONSTRAINT actors_pkey PRIMARY KEY (id);
 

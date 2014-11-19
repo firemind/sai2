@@ -1,43 +1,42 @@
+/*
+	Names: Michael Gerber, Ariana Arcos Blanco
+*/
+create type gender as enum('f','m');
+
 CREATE TABLE actors (
     id serial,
     name character varying(255) NOT NULL,
-    gender smallint DEFAULT 0 NOT NULL,
-    popularity integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    gender gender NOT NULL,
+    popularity integer check (popularity > 0)
 );
+ALTER SEQUENCE actors_id_seq RESTART WITH 1;
 
 CREATE TABLE actors_watchables (
     watchable_id integer NOT NULL,
-    actor_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    actor_id integer NOT NULL
 );
 
 CREATE TABLE episodes (
     id serial,
     season_nr integer,
     watchable_id integer NOT NULL,
-    serie_id integer NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    serie_id integer NOT NULL
 );
+ALTER SEQUENCE episodes_id_seq RESTART WITH 1;
 
 CREATE TABLE movies (
     id serial,
     rottentomatoesrating integer,
-    watchable_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    watchable_id integer
 );
+ALTER SEQUENCE movies_id_seq RESTART WITH 1;
 
 CREATE TABLE series (
     id serial,
     name character varying(255) NOT NULL,
-    language character varying(255) DEFAULT 'english'::character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    language character varying(255) DEFAULT 'english'::character varying
 );
+ALTER SEQUENCE series_id_seq RESTART WITH 1;
 
 CREATE TABLE torrents (
     id serial,
@@ -48,10 +47,9 @@ CREATE TABLE torrents (
     pub_date timestamp without time zone,
     rating integer,
     size character varying(255),
-    watchable_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    watchable_id integer
 );
+ALTER SEQUENCE torrents_id_seq RESTART WITH 1;
 
 CREATE TABLE watchables (
     id serial,
@@ -59,15 +57,17 @@ CREATE TABLE watchables (
     firstaired date,
     name character varying(255) NOT NULL,
     watched boolean DEFAULT false NOT NULL,
-    length integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    length integer
 );
+ALTER SEQUENCE watchables_id_seq RESTART WITH 1;
 
-
-SELECT pg_catalog.setval('actors_id_seq', 40, true);
-SELECT pg_catalog.setval('episodes_id_seq', 623, true);
-SELECT pg_catalog.setval('movies_id_seq', 1, false);
-SELECT pg_catalog.setval('series_id_seq', 47, true);
-SELECT pg_catalog.setval('torrents_id_seq', 60, true);
-SELECT pg_catalog.setval('watchables_id_seq', 624, true);
+/*create view*/
+create view actors_in_watchables_view as 
+	SELECT actors.name as actorname, watchables.name as watchablename FROM actors_watchables 
+	INNER JOIN actors
+	ON actors.id=actors_watchables.actor_id
+	INNER JOIN watchables
+	ON watchables.id = actors_watchables.watchable_id;
+	
+create view popularity_view as
+	select id, popularity from actors;
