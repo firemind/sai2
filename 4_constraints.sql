@@ -21,6 +21,9 @@ ALTER TABLE ONLY actors_watchables
 
 ALTER TABLE ONLY actors_watchables
     ADD CONSTRAINT actors_watchables_watchable_id_fk FOREIGN KEY (watchable_id) REFERENCES watchables(id);
+	
+ALTER TABLE ONLY actors_watchables
+    ADD CONSTRAINT actors_watchables_watchable_id_actors_id_unique UNIQUE(watchable_id,actor_id);
 
 ALTER TABLE ONLY episodes
     ADD CONSTRAINT episodes_serie_id_fk FOREIGN KEY (serie_id) REFERENCES series(id);

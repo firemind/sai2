@@ -25,6 +25,8 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
+CREATE DATABASE sai_dev;
+\c sai_dev;
 
 \i 2_schema.sql
 \i 3_inserts.sql

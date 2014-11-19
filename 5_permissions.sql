@@ -1,3 +1,4 @@
+CREATE ROLE sai_dev PASSWORD '5ebe2294ecd0e0f08eab7690d2a6ee69' NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;
 
 ALTER TABLE public.actors OWNER TO sai_dev;
 ALTER TABLE public.actors_id_seq OWNER TO sai_dev;
@@ -29,7 +30,6 @@ ALTER TABLE ONLY movies ALTER COLUMN id SET DEFAULT nextval('movies_id_seq'::reg
 ALTER TABLE ONLY series ALTER COLUMN id SET DEFAULT nextval('series_id_seq'::regclass);
 ALTER TABLE ONLY torrents ALTER COLUMN id SET DEFAULT nextval('torrents_id_seq'::regclass);
 ALTER TABLE ONLY watchables ALTER COLUMN id SET DEFAULT nextval('watchables_id_seq'::regclass);
-
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM postgres;
